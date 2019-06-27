@@ -24,5 +24,5 @@ func StageSelect() (int, mainTask.MainTask) {
         return gameMode, mainTask.MODE_SELECT
     }
 
-    return gameMode, mainTask.GAME_MAIN
+    return gameMode, mainTask.PLAY
 }

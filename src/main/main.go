@@ -12,10 +12,10 @@ import (
 var userSetting user.User
 var task mainTask.MainTask
 var gameMode int
+var gameStage int
 
 func main() {
-    err := lib.SetClearCommand()
-    if err != nil {
+    if err := lib.SetClearCommand(); err != nil {
         lib.ClearConsole()
         fmt.Println(err)
         os.Exit(0)
@@ -40,17 +40,15 @@ func main() {
                 gameMode, task = gameMain.ModeSelect()
 
             case mainTask.STAGE_SELECT:
-                gameMode, task = gameMain.StageSelect()
+                gameStage, task = gameMain.StageSelect()
 
             case mainTask.MANUAL:
                 lib.SystemMessage([]string{
                     "未実装",
                 })
 
-            case mainTask.GAME_MAIN:
-                lib.SystemMessage([]string{
-                    "未実装",
-                })
+            case mainTask.PLAY:
+                task = gameMain.Play(gameMode, gameStage)
 
             default:
                 lib.SystemMessage([]string{
